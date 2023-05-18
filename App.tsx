@@ -1,27 +1,63 @@
 import { StatusBar } from 'expo-status-bar'
-import { Text, View } from 'react-native'
+import { ImageBackground, View, Text, TouchableOpacity } from 'react-native'
+
+import blurBg from './src/assets/bg-blur.png'
+import Stripe from './src/assets/stripe.svg'
+import NlwLogo from './src/assets/nlw-logo.svg'
+import { styled } from 'nativewind'
+
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_700Bold,
+} from '@expo-google-fonts/roboto'
+import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
+
+const StyledStripe = styled(Stripe)
 
 export default function App() {
+  const [hasLoadedFonts] = useFonts({
+    Roboto_400Regular,
+    Roboto_700Bold,
+    BaiJamjuree_700Bold,
+  })
+
+  if (!hasLoadedFonts) {
+    return null
+  }
   return (
-    <View className="flex-1 items-center justify-center bg-gray-900">
-      <Text className="text-4xl font-bold text-zinc-300">
-        Open up App.js to start working on my app!
+    <ImageBackground
+      source={blurBg}
+      className="relative flex-1 bg-gray-900 px-8 py-10"
+      imageStyle={{ position: 'absolute', left: '-100%' }}
+    >
+      <StyledStripe className="absolute left-2" />
+      {/* <Text className="font-alt text-4xl text-zinc-300">NLW Spacetime!</Text> */}
+      <View className="flex-1 items-center justify-center gap-6">
+        <NlwLogo />
+        <View className="space-y-2">
+          <Text className="text-center font-title text-2xl leading-tight text-gray-50">
+            Sua cápsula do tempo
+          </Text>
+          <Text className="text-center font-body text-base leading-relaxed text-gray-100">
+            Colecione momentos marcantes da sua jornada e compartilhe (se
+            quiser) com o mundo!
+          </Text>
+        </View>
+        <TouchableOpacity
+          className="rounded-full bg-green-500 px-5 py-3 "
+          activeOpacity={0.7}
+        >
+          <Text className="font-alt text-sm uppercase text-gray-900">
+            COMEÇAR A CADASTRAR
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+      <Text className="text-center font-body text-sm leading-relaxed text-gray-200">
+        Feito com 💜 no NLW da Rocketseat
       </Text>
       <StatusBar style="light" />
-    </View>
+    </ImageBackground>
   )
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#2b2929',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   text:{
-//     color:'#cecece',
-//     fontWeight:'700',
-//     fontSize:48,
-//   },
-// });
