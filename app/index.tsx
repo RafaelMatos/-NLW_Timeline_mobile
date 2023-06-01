@@ -1,6 +1,6 @@
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
 import { useEffect } from 'react'
-import { useRouter } from 'expo-router'
+// import { useRouter } from 'expo-router'
 
 import * as SecureStore from 'expo-secure-store'
 
@@ -16,7 +16,7 @@ const discovery = {
 }
 
 export default function App() {
-  const router = useRouter()
+  // const router = useRouter()
 
   const [, response, signInWithGithub] = useAuthRequest(
     {
